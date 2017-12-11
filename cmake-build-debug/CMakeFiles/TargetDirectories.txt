@@ -1,0 +1,3 @@
+/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/aso2.dir

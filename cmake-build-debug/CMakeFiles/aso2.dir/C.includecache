@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/predicador/ClionProjects/aso2/libsem.c
+sys/sem.h
+-
+sys/types.h
+-
+sys/ipc.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+libsem.h
+/home/predicador/ClionProjects/aso2/libsem.h
+
+/home/predicador/ClionProjects/aso2/libsem.h
+
+/home/predicador/ClionProjects/aso2/main.c
+stdio.h
+-
+libsem.h
+/home/predicador/ClionProjects/aso2/libsem.h
+
