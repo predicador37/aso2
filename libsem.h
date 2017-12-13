@@ -15,5 +15,11 @@ typedef struct semaforo Semaforo;
 extern Semaforo* semaforos;
 
 void a_sem(char S[], char tipo, int N);
+void i_sem(char S[], int x);
+
+int siguiente_sin_asignar();
+int busca_semaforo(char S[]);
+int condicion_binario(int x);
+int condicion_general(int x);
 
 #endif //ASO2_LIBSEM_H
