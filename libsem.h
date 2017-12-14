@@ -16,6 +16,7 @@ extern Semaforo* semaforos;
 
 void a_sem(char S[], char tipo, int N);
 void i_sem(char S[], int x);
+void w_sem(char S[]);
 
 int siguiente_sin_asignar();
 int busca_semaforo(char S[]);

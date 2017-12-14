@@ -112,8 +112,26 @@ void i_sem(char S[], int x) {
         exit(1);
     }
     int semValue = semctl(semid, sem, GETVAL, 0);
-    printf("[debug] Valor leído del semáforo: %d\n", semValue);
+    printf("[debug] i_sem: Valor leído del semáforo: %d\n", semValue);
 
+
+}
+
+void w_sem(char S[]) {
+    int sem = busca_semaforo(S);
+    printf("[debug] w_sem: Semáforo encontrado: %d\n", sem);
+    if (sem == -1) {
+        perror("[error] w_sem: No se encuentra el semáforo.");
+        exit(1);
+    }
+
+    struct sembuf decrementar = {sem, -1, IPC_NOWAIT};
+    if (semop(semid, &decrementar, 1) == -1) {
+        perror("[error] w_sem: No es posible decrementar el semáforo.");
+        exit(1);
+    }
+    int semValue = semctl(semid, sem, GETVAL, 0);
+    printf("[debug] w_sem: valor leído del semáforo: %d\n", semValue);
 
 }
 
