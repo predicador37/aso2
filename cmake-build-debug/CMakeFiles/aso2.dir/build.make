@@ -57,33 +57,9 @@ include CMakeFiles/aso2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/aso2.dir/flags.make
 
-CMakeFiles/aso2.dir/main.c.o: CMakeFiles/aso2.dir/flags.make
-CMakeFiles/aso2.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/aso2.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/aso2.dir/main.c.o   -c /home/predicador/ClionProjects/aso2/main.c
-
-CMakeFiles/aso2.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/aso2.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/predicador/ClionProjects/aso2/main.c > CMakeFiles/aso2.dir/main.c.i
-
-CMakeFiles/aso2.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/aso2.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/predicador/ClionProjects/aso2/main.c -o CMakeFiles/aso2.dir/main.c.s
-
-CMakeFiles/aso2.dir/main.c.o.requires:
-
-.PHONY : CMakeFiles/aso2.dir/main.c.o.requires
-
-CMakeFiles/aso2.dir/main.c.o.provides: CMakeFiles/aso2.dir/main.c.o.requires
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/main.c.o.provides.build
-.PHONY : CMakeFiles/aso2.dir/main.c.o.provides
-
-CMakeFiles/aso2.dir/main.c.o.provides.build: CMakeFiles/aso2.dir/main.c.o
-
-
 CMakeFiles/aso2.dir/libsem.c.o: CMakeFiles/aso2.dir/flags.make
 CMakeFiles/aso2.dir/libsem.c.o: ../libsem.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/aso2.dir/libsem.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/aso2.dir/libsem.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/aso2.dir/libsem.c.o   -c /home/predicador/ClionProjects/aso2/libsem.c
 
 CMakeFiles/aso2.dir/libsem.c.i: cmake_force
@@ -105,16 +81,40 @@ CMakeFiles/aso2.dir/libsem.c.o.provides: CMakeFiles/aso2.dir/libsem.c.o.requires
 CMakeFiles/aso2.dir/libsem.c.o.provides.build: CMakeFiles/aso2.dir/libsem.c.o
 
 
+CMakeFiles/aso2.dir/main.c.o: CMakeFiles/aso2.dir/flags.make
+CMakeFiles/aso2.dir/main.c.o: ../main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/aso2.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/aso2.dir/main.c.o   -c /home/predicador/ClionProjects/aso2/main.c
+
+CMakeFiles/aso2.dir/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/aso2.dir/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/predicador/ClionProjects/aso2/main.c > CMakeFiles/aso2.dir/main.c.i
+
+CMakeFiles/aso2.dir/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/aso2.dir/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/predicador/ClionProjects/aso2/main.c -o CMakeFiles/aso2.dir/main.c.s
+
+CMakeFiles/aso2.dir/main.c.o.requires:
+
+.PHONY : CMakeFiles/aso2.dir/main.c.o.requires
+
+CMakeFiles/aso2.dir/main.c.o.provides: CMakeFiles/aso2.dir/main.c.o.requires
+	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/main.c.o.provides.build
+.PHONY : CMakeFiles/aso2.dir/main.c.o.provides
+
+CMakeFiles/aso2.dir/main.c.o.provides.build: CMakeFiles/aso2.dir/main.c.o
+
+
 # Object files for target aso2
 aso2_OBJECTS = \
-"CMakeFiles/aso2.dir/main.c.o" \
-"CMakeFiles/aso2.dir/libsem.c.o"
+"CMakeFiles/aso2.dir/libsem.c.o" \
+"CMakeFiles/aso2.dir/main.c.o"
 
 # External object files for target aso2
 aso2_EXTERNAL_OBJECTS =
 
-aso2: CMakeFiles/aso2.dir/main.c.o
 aso2: CMakeFiles/aso2.dir/libsem.c.o
+aso2: CMakeFiles/aso2.dir/main.c.o
 aso2: CMakeFiles/aso2.dir/build.make
 aso2: CMakeFiles/aso2.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable aso2"
@@ -125,8 +125,8 @@ CMakeFiles/aso2.dir/build: aso2
 
 .PHONY : CMakeFiles/aso2.dir/build
 
-CMakeFiles/aso2.dir/requires: CMakeFiles/aso2.dir/main.c.o.requires
 CMakeFiles/aso2.dir/requires: CMakeFiles/aso2.dir/libsem.c.o.requires
+CMakeFiles/aso2.dir/requires: CMakeFiles/aso2.dir/main.c.o.requires
 
 .PHONY : CMakeFiles/aso2.dir/requires
 

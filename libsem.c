@@ -19,8 +19,6 @@ void a_sem(char* S, char tipo, int N) {
 
     key_t key;
 
-
-
     /* Comprobación del tipo de semáforo introducido */
     if (tipo != 'B' && tipo != 'G') {
         printf("[error] El tipo solo puede tomar los valores 'B' o 'G'.");
@@ -43,16 +41,6 @@ void a_sem(char* S, char tipo, int N) {
 
     printf("[debug] El id del conjunto generado es: %d\n", semid);
 
-   /* *//* Inicialización de los semáforos a estado disponible *//*
-    arg = 1;
-    for(int n=0; n<N; n++) {
-        if (semctl(semid, n, SETVAL, arg) == -1) {
-            perror("semctl");
-            exit(1);
-        }
-    }*/
-    // si no hay ningún semáforo asignado,
-    // inicializar el array de structs con malloc
     if (!semaforos) {
         semaforos = malloc(N * sizeof(Semaforo));
         // y asignar el primer semáforo
@@ -94,7 +82,7 @@ void a_sem(char* S, char tipo, int N) {
 
 void i_sem(char S[], int x) {
     int sem = busca_semaforo(S);
-    printf("[debug] Semáforo encontrado: %d\n", sem);
+    printf("[debug] i_sem: Semáforo encontrado: %d\n", sem);
     if (sem == -1) {
         perror("[error] No se encuentra el semáforo.");
         exit(1);
@@ -112,12 +100,13 @@ void i_sem(char S[], int x) {
         exit(1);
     }
     int semValue = semctl(semid, sem, GETVAL, 0);
-    printf("[debug] i_sem: Valor leído del semáforo: %d\n", semValue);
+    printf("[debug] i_sem: Valor leído del semáforo %s: %d\n", S, semValue);
 
 
 }
 
 void w_sem(char S[]) {
+    printf("INICIO WSEM: semaforo %s\n", S);
     int sem = busca_semaforo(S);
     printf("[debug] w_sem: Semáforo encontrado: %d\n", sem);
     if (sem == -1) {
@@ -125,14 +114,62 @@ void w_sem(char S[]) {
         exit(1);
     }
 
-    struct sembuf decrementar = {sem, -1, IPC_NOWAIT};
+    struct sembuf decrementar = {sem, -1, 0};
     if (semop(semid, &decrementar, 1) == -1) {
         perror("[error] w_sem: No es posible decrementar el semáforo.");
         exit(1);
     }
     int semValue = semctl(semid, sem, GETVAL, 0);
-    printf("[debug] w_sem: valor leído del semáforo: %d\n", semValue);
+    printf("[debug] w_sem: valor leído del semáforo %s: %d\n", S, semValue);
+    printf("END OF WSEM\n");
+    return;
 
+}
+
+void s_sem(char S[]) {
+    int sem = busca_semaforo(S);
+    printf("[debug] s_sem: Semáforo encontrado: %d\n", sem);
+    if (sem == -1) {
+        perror("[error] s_sem: No se encuentra el semáforo.");
+        exit(1);
+    }
+
+    int semValue = semctl(semid, sem, GETVAL, 0);
+
+
+    if (semaforos[sem].tipo == 'B' && semValue == 1) {
+        return;
+    }
+
+    struct sembuf incrementar = {sem, 1, 0};
+
+    if (semop(semid, &incrementar, 1) == -1) {
+        perror("[error] s_sem: No es posible incrementar el semáforo.");
+        exit(1);
+    }
+
+    semValue = semctl(semid, sem, GETVAL, 0);
+    printf("[debug] s_sem: valor leído del semáforo %s: %d\n", S, semValue);
+    return;
+}
+
+void z_sem(){
+
+    if (semctl(semid, 0, IPC_RMID) == -1 ) {
+        perror("[error] z_sem: No es posible destruir el conjunto de semáforos.");
+        exit(1);
+    }
+    int i=0;
+    while (semaforos[i].nombre != NULL){
+        free(semaforos[i].nombre);
+        i++;
+    }
+    free(semaforos);
+}
+
+int obtener_valor_semaforo(int sem) {
+    int semValue = semctl(semid, sem, GETVAL, 0);
+    printf("[debug] valor obtenido: %d\n", semValue);
 }
 
 int siguiente_sin_asignar() {

@@ -17,7 +17,10 @@ extern Semaforo* semaforos;
 void a_sem(char S[], char tipo, int N);
 void i_sem(char S[], int x);
 void w_sem(char S[]);
+void s_sem(char S[]);
+void z_sem();
 
+int obtener_valor_semaforo(int sem);
 int siguiente_sin_asignar();
 int busca_semaforo(char S[]);
 int condicion_binario(int x);
