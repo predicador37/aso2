@@ -31,55 +31,55 @@ extern Semaforo* semaforos; //se importa la estructura de libsem
  */
 int crea_procesos_encadenados(int n, int N)
 {
-    printf("Crea proceso con n = %d\n", n_inicial - n);
+
     if (n == 0) // no hay más procesos por crear
     {
-        printf("NO HAY MÁS PROCESOS POR CREAR\n");
         s_sem(semaforos[0].nombre); //devolver control a patriarca
         return 0;
     }
 
-
+    // se crea un proceso hijo
     int pid = fork();
 
     if (pid == -1) {
         perror("[error] No se pudo crear el proceso hijo.\n");
     }
     if (pid == 0) { // proceso hijo
-        n--;
-        printf("Creando proceso %d\n", n_inicial - n);
-        crea_procesos_encadenados(n, N);
+        n--; // decrementar el contador de procesos, ya que hay uno más
+        crea_procesos_encadenados(n, N); // llamar recursivamente a la propia función
         exit(0);
     }
     else { // proceso padre...
 
-        printf("[parent] WAIT for smaphore: %s\n", semaforos[n_inicial - n].nombre);
-        printf("CONTROL_WAIT_3\n");
         w_sem(semaforos[n_inicial - n ].nombre); // esperar para retomar el control
         int i =0;
+        // secuencia de sincronización
         for(i=0;i<N;i++) {
-            printf("CONTROL DEVUELTO A %d\n", getpid());
-            printf("Proceso %d, PID = %d\n", n_inicial - n, getpid());
-            sleep(1);
+            printf("Proceso %d, PID = %d\n", n_inicial - n + 1, getpid());
+            sleep(1); //esperar un segundo
+            // si el proceso no es el último, activa a su hijo y queda a la espera
             if (n!= 1) {
                 s_sem(semaforos[n_inicial - n + 1].nombre); // activar semáforo
-                printf("CONTROL_WAIT_1\n");
-                w_sem(semaforos[n_inicial - n].nombre); // esperar para retomar el control// de hijo
+
+                w_sem(semaforos[n_inicial - n].nombre); // esperar para retomar el control de hijo
             }
-            else {
-                s_sem(semaforos[0].nombre);
-                printf("CONTROL_WAIT_2\n");
-                w_sem(semaforos[n_inicial - n].nombre); // esperar para retomar el control// de hijo
+            else { //n=1, último proceso
+                printf("\n");
+                s_sem(semaforos[0].nombre); // devuelve el control al patriarca
+                w_sem(semaforos[n_inicial - n].nombre); // esperar para retomar el control de hijo
+
             }
 
 
         }
+        // cierre de todos los procesos excepto el último
         if (n!=1) {
             s_sem(semaforos[n_inicial - n + 1].nombre);
             exit(0);
 
         }
-        else {
+        else { //n=1, último proceso
+            //eliminar el conjunto de semáforos y salir
             z_sem();
             exit(0);
         }
@@ -89,6 +89,11 @@ int crea_procesos_encadenados(int n, int N)
 
 }
 
+/*
+ * Programa principal que recibirá los argumentos de línea de comandos y creará el conjunto de semáforos necesario
+ * para después invocar a la función que creará los procesos y mostrará la secuencia de sincronización
+ *
+ */
 int main(int argc, char **argv) {
 
     // comprobación del número de argumentos
@@ -114,7 +119,6 @@ int main(int argc, char **argv) {
     n_inicial = n;
 
     /* A continuación se generan los nombres para los semáforos: SEM1, SEM2, ...*/
-
     char *nombre_base = "SEM";
     int len_nombre = strlen(nombre_base);
     int i=0;
@@ -125,12 +129,14 @@ int main(int argc, char **argv) {
         nombre[len_nombre] = numero;
         nombre[len_nombre + 1] = '\0';
         // se crean los semáforos (la primera vez también en conjunto) con los nombres generados y se inicializan a 0
+        // (un semáforo binario por proceso)
         a_sem(nombre, 'B', n);
         i_sem(nombre, 0);
     }
 
 
-    //printf("Nombre del semáforo: %s\n", semaforos[0].nombre);
+    //se crean los procesos encadenados que usarán los semáforos creados anteriormente
+    //la llamada a esta función mostrará la secuencia de sincronización por pantalla
     crea_procesos_encadenados(n, N);
     exit(0);
 }

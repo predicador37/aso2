@@ -5,6 +5,7 @@
 #ifndef ASO2_LIBSEM_H
 #define ASO2_LIBSEM_H
 
+// estructura donde se almacenará la información de cada semáforo
 struct semaforo {
     int id;
     char tipo;
@@ -12,6 +13,7 @@ struct semaforo {
 };
 typedef struct semaforo Semaforo;
 
+// se crea un puntero a estructuras de tipo semáforo que podrá utilizarse en otros ficheros
 extern Semaforo* semaforos;
 
 /* a_sem
@@ -90,10 +92,53 @@ void s_sem(char S[]);
  */
 void z_sem();
 
-int obtener_valor_semaforo(int sem);
+/*
+ * siguiente_sin_asignar
+ *
+ * Función auxiliar que determina cuál es el siguiente semáforo sin asignar.
+ * Para ello, devuelve el índice del primer semáforo sin nombre asignado en la estructura.
+ *
+ */
 int siguiente_sin_asignar();
+
+/*
+ * busca_semaforo
+ *
+ * Parámetros de entrada:
+ * char S[]: nombre del semáforo
+ *
+ * Descripción:
+ *
+ * Esta función comprueba cada semáforo de la estructura y, si su nombre no es nulo, lo compara con el nombre S.
+ * Si lo encuentra, lo devuelve; en otro caso, devuelve -1.
+ *
+ */
 int busca_semaforo(char S[]);
+
+/*
+ * condicion_binario
+ *
+ * Parámetros de entrada:
+ * int x: valor a fijar en el semáforo
+ *
+ * Descripción:
+ *
+ * Esta función comprueba si el valor a fijar cumple con las condiciones de un valor para semáforo binario.
+ *
+ */
 int condicion_binario(int x);
+
+/*
+ * condicion_general
+ *
+ * Parámetros de entrada:
+ * int x: valor a fijar en el semáforo
+ *
+ * Descripción:
+ *
+ * Esta función comprueba si el valor a fijar cumple con las condiciones de un valor para semáforo general.
+ *
+ */
 int condicion_general(int x);
 
 #endif //ASO2_LIBSEM_H
