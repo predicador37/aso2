@@ -1,5 +1,5 @@
 //
-// Created by predicador on 17/12/17.
+// Created by Miguel Expósito Martín, 72056097H.
 //
 
 #include <stdio.h>
@@ -13,8 +13,22 @@
 #include "libsem.h"
 
 int n_inicial; //número de procesos a crear sin modificar por la función recursiva
-extern Semaforo* semaforos;
+extern Semaforo* semaforos; //se importa la estructura de libsem
 
+/* crea_procesos_encadenados
+ *
+ * Parámetros de entrada:
+ *
+ * int n: número de procesos a crear
+ * int N: número de veces a ejecutar la secuencia de sincronización
+ *
+ *
+ * Descripción:
+ *
+ * Esta función recursiva genera la cadena de procesos requerida usando fork y los sincroniza utilizando semáforos
+ * binarios.
+ *
+ */
 int crea_procesos_encadenados(int n, int N)
 {
     printf("Crea proceso con n = %d\n", n_inicial - n);
@@ -33,7 +47,6 @@ int crea_procesos_encadenados(int n, int N)
     }
     if (pid == 0) { // proceso hijo
         n--;
-        //printf("[child] Wait for smaphore: %d\n", n_inicial-n);
         printf("Creando proceso %d\n", n_inicial - n);
         crea_procesos_encadenados(n, N);
         exit(0);
@@ -61,23 +74,24 @@ int crea_procesos_encadenados(int n, int N)
 
 
         }
-        if (n == 4) {
-            int i = 1;
-            for(i=1;i<n;i++){
-                s_sem(semaforos[i].nombre);
-            }
-            printf("FINAL DEL BUCLE");
+        if (n!=1) {
+            s_sem(semaforos[n_inicial - n + 1].nombre);
+            exit(0);
+
+        }
+        else {
             z_sem();
+            exit(0);
         }
 
-        return 0;
     }
 
-    return 0;
+
 }
 
 int main(int argc, char **argv) {
 
+    // comprobación del número de argumentos
     if (argc != 3) {
         perror("[error] Debe introducir exactamente dos argumentos: número de procesos y de sincronizaciones.");
         return(1);
@@ -86,20 +100,22 @@ int main(int argc, char **argv) {
     int n = atoi(argv[1]);
     int N = atoi(argv[2]);
 
+    // comprobación del argumento de número de procesos
     if (n < 2 || n > 8) {
         perror("[error] El número de procesos a crear debe estar entre 2 y 8.");
         return(1);
     }
 
+    // comprobación del argumento de número de veces a ejecutar la secuencia de sincronización
     if (N < 2 || N > 15) {
         perror("[error] El número de veces a ejecutar la secuencia de sincronización debe estar entre 2 y 15.");
         return(1);
     }
     n_inicial = n;
 
-    /* A continuación se generan los nombres para los semáforos: MUTEX1, MUTEX2, ...*/
+    /* A continuación se generan los nombres para los semáforos: SEM1, SEM2, ...*/
 
-    char *nombre_base = "MUTEX";
+    char *nombre_base = "SEM";
     int len_nombre = strlen(nombre_base);
     int i=0;
     for (i=0;i<n;i++) {
@@ -108,7 +124,7 @@ int main(int argc, char **argv) {
         strcpy(nombre, nombre_base);
         nombre[len_nombre] = numero;
         nombre[len_nombre + 1] = '\0';
-        printf("NOMBRE: %s\n", nombre);
+        // se crean los semáforos (la primera vez también en conjunto) con los nombres generados y se inicializan a 0
         a_sem(nombre, 'B', n);
         i_sem(nombre, 0);
     }
@@ -116,5 +132,5 @@ int main(int argc, char **argv) {
 
     //printf("Nombre del semáforo: %s\n", semaforos[0].nombre);
     crea_procesos_encadenados(n, N);
-    z_sem();
+    exit(0);
 }
