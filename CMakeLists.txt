@@ -3,4 +3,4 @@ project(aso2 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(aso2 libsem.h libsem.c main.c)
+add_executable(prosin libsem.h libsem.c prosin.c)

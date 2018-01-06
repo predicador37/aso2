@@ -17,16 +17,6 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/predicador/ClionProjects/aso2/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="rebuild_cache">
 				<Option working_dir="/home/predicador/ClionProjects/aso2/cmake-build-debug"/>
 				<Option type="4"/>
@@ -37,28 +27,18 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="aso2">
-				<Option output="/home/predicador/ClionProjects/aso2/cmake-build-debug/aso2" prefix_auto="0" extension_auto="0"/>
+			<Target title="edit_cache">
 				<Option working_dir="/home/predicador/ClionProjects/aso2/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 aso2"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="aso2/fast">
-				<Option output="/home/predicador/ClionProjects/aso2/cmake-build-debug/aso2" prefix_auto="0" extension_auto="0"/>
+			<Target title="prosin">
+				<Option output="/home/predicador/ClionProjects/aso2/cmake-build-debug/prosin" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/predicador/ClionProjects/aso2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -71,7 +51,27 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 aso2/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 prosin"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="prosin/fast">
+				<Option output="/home/predicador/ClionProjects/aso2/cmake-build-debug/prosin" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/predicador/ClionProjects/aso2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 prosin/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/predicador/ClionProjects/aso2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -79,13 +79,13 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/predicador/ClionProjects/aso2/libsem.c">
-			<Option target="aso2"/>
+			<Option target="prosin"/>
 		</Unit>
 		<Unit filename="/home/predicador/ClionProjects/aso2/libsem.h">
-			<Option target="aso2"/>
+			<Option target="prosin"/>
 		</Unit>
-		<Unit filename="/home/predicador/ClionProjects/aso2/main.c">
-			<Option target="aso2"/>
+		<Unit filename="/home/predicador/ClionProjects/aso2/prosin.c">
+			<Option target="prosin"/>
 		</Unit>
 		<Unit filename="/home/predicador/ClionProjects/aso2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

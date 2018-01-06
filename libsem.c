@@ -7,7 +7,10 @@
 #include <string.h>
 #include "libsem.h"
 
+// de entrada, el array de estructuras para los semáforos está vacío
 Semaforo* semaforos = NULL;
+
+// es necesaria una variable global con el identificador del conjunto para poder usarlo en el resto de funciones
 int semid;
 
 void a_sem(char* S, char tipo, int N) {
@@ -16,20 +19,21 @@ void a_sem(char* S, char tipo, int N) {
 
     /* Comprobación del tipo de semáforo introducido */
     if (tipo != 'B' && tipo != 'G') {
-        perror("[error] El tipo solo puede tomar los valores 'B' o 'G'.");
-        exit(1);
+        perror("[error] a_sem: El tipo solo puede tomar los valores 'B' o 'G'.");
+        exit(-1);
     }
 
     /* Generación de la clave necesaria para obtener el conjunto de semáforos */
     if ((key = ftok(".", 'A')) == -1) {
-        perror("[error] No se ha podido generar la clave para el conjunto de semáforos.");
-        exit(1);
+        perror("[error] a_sem: No se ha podido generar la clave para el conjunto de semáforos.");
+        exit(-1);
     }
 
     /* Obtención del conjunto de semáforos */
+    // a partir de la segunda vez, si
     if ((semid = semget(key, N, 0666 | IPC_CREAT)) == -1) {
-        perror("[error] No se ha podido crear el conjunto de semáforos");
-        exit(1);
+        perror("[error] a_sem: No se ha podido crear el conjunto de semáforos");
+        exit(-1);
     }
 
     if (!semaforos) { // si es la primera vez que se llama, no hay semáforos
@@ -37,16 +41,16 @@ void a_sem(char* S, char tipo, int N) {
         // y se asigna el primer semáforo
         semaforos[0].id = 0;
         semaforos[0].tipo = tipo;
-        semaforos[0].nombre = malloc(sizeof(char) * (strlen(S) + 1));
+        semaforos[0].nombre = malloc(sizeof(char) * (strlen(S) + 1)); // reserva dinámica de memoria para el nombre
         semaforos[0].nombre = S;
 
     } else {  // si ya hay algún semáforo asignado:
         // se determina cuál es el siguiente sin asignar
 
-        int next = siguiente_sin_asignar(N);
+        int next = siguiente_sin_asignar();
         if (next > N) { // se captura la situación en la que ningún semáforo está libre
-            perror("[error] No hay semáforos disponibles para asignar.");
-            exit(1);
+            perror("[error] a_sem: No hay semáforos disponibles para asignar.");
+            exit(-1);
         }
         // y se asigna el siguiente semáforo
         semaforos[next].id = semaforos[next-1].id + 1;
@@ -65,23 +69,23 @@ void i_sem(char S[], int x) {
 
     // se captura el caso en el que no se encuentre el semáforo
     if (sem == -1) {
-        perror("[error] No se encuentra el semáforo.");
-        exit(1);
+        perror("[error] i_sem: No se encuentra el semáforo.");
+        exit(-1);
     }
     // si el tipo de semáforo es binario y x no cumple no es 0 o 1...
     if (semaforos[sem].tipo == 'B' && condicion_binario(x) == 0) {
-        perror("[error] El semáforo binario solo puede tomar valores 0 ó 1.");
-        exit(1);
+        perror("[error] i_sem: El semáforo binario solo puede tomar valores 0 ó 1.");
+        exit(-1);
     }
-    // si el tipo de semáforo es general y x no es un entero positivo mayor o gial que 0...
+    // si el tipo de semáforo es general y x no es un entero positivo mayor o igual que 0...
     if (semaforos[sem].tipo == 'G' && condicion_general(x) == 0) {
-        perror("[error] El semáforo general solo puede tomar valores mayores o iguales que 0.");
-        exit(1);
+        perror("[error] i_sem: El semáforo general solo puede tomar valores mayores o iguales que 0.");
+        exit(-1);
     }
     // se inicializa el semáforo con el valor especificado
     if (semctl(semid, semaforos[sem].id, SETVAL, x) == -1) {
-        perror("[error] El semáforo no ha podido ser inicializado correctamente al valor especificado.");
-        exit(1);
+        perror("[error] i_sem: El semáforo no ha podido ser inicializado correctamente al valor especificado.");
+        exit(-1);
     }
 
 }
@@ -94,14 +98,14 @@ void w_sem(char S[]) {
     // se captura el caso en el que no se encuentre el semáforo
     if (sem == -1) {
         perror("[error] w_sem: No se encuentra el semáforo.");
-        exit(1);
+        exit(-1);
     }
 
     // se implementa la operación wait_sem decrementando el valor del semáforo en 1
     struct sembuf decrementar = {sem, -1, 0};
     if (semop(semid, &decrementar, 1) == -1) {
         perror("[error] w_sem: No es posible decrementar el semáforo.");
-        exit(1);
+        exit(-1);
     }
 }
 
@@ -113,7 +117,7 @@ void s_sem(char S[]) {
     // se captura el caso en el que no se encuentre el semáforo
     if (sem == -1) {
         perror("[error] s_sem: No se encuentra el semáforo.");
-        exit(1);
+        exit(-1);
     }
 
     int semValue = semctl(semid, sem, GETVAL, 0);
@@ -127,9 +131,8 @@ void s_sem(char S[]) {
     struct sembuf incrementar = {sem, 1, 0};
     if (semop(semid, &incrementar, 1) == -1) {
         perror("[error] s_sem: No es posible incrementar el semáforo.");
-        exit(1);
+        exit(-1);
     }
-    return;
 }
 
 void z_sem(){
@@ -137,7 +140,7 @@ void z_sem(){
     // se destruye el conjunto de semáforos
     if (semctl(semid, 0, IPC_RMID) == -1 ) {
         perror("[error] z_sem: No es posible destruir el conjunto de semáforos.");
-        exit(1);
+        exit(-1);
     }
     int i=0;
 

@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/predicador/ClionProjects/aso2/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/predicador/data/Aplicaciones/clion-2017.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/home/predicador/data/Aplicaciones/clion-2017.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named aso2
+# Target rules for targets named prosin
 
 # Build rule for target.
-aso2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 aso2
-.PHONY : aso2
+prosin: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 prosin
+.PHONY : prosin
 
 # fast build rule for target.
-aso2/fast:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/build
-.PHONY : aso2/fast
+prosin/fast:
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/build
+.PHONY : prosin/fast
 
 libsem.o: libsem.c.o
 
@@ -129,7 +129,7 @@ libsem.o: libsem.c.o
 
 # target to build an object file
 libsem.c.o:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/libsem.c.o
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/libsem.c.o
 .PHONY : libsem.c.o
 
 libsem.i: libsem.c.i
@@ -138,7 +138,7 @@ libsem.i: libsem.c.i
 
 # target to preprocess a source file
 libsem.c.i:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/libsem.c.i
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/libsem.c.i
 .PHONY : libsem.c.i
 
 libsem.s: libsem.c.s
@@ -147,35 +147,35 @@ libsem.s: libsem.c.s
 
 # target to generate assembly for a file
 libsem.c.s:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/libsem.c.s
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/libsem.c.s
 .PHONY : libsem.c.s
 
-main.o: main.c.o
+prosin.o: prosin.c.o
 
-.PHONY : main.o
+.PHONY : prosin.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/main.c.o
-.PHONY : main.c.o
+prosin.c.o:
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/prosin.c.o
+.PHONY : prosin.c.o
 
-main.i: main.c.i
+prosin.i: prosin.c.i
 
-.PHONY : main.i
+.PHONY : prosin.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/main.c.i
-.PHONY : main.c.i
+prosin.c.i:
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/prosin.c.i
+.PHONY : prosin.c.i
 
-main.s: main.c.s
+prosin.s: prosin.c.s
 
-.PHONY : main.s
+.PHONY : prosin.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/main.c.s
-.PHONY : main.c.s
+prosin.c.s:
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/prosin.c.s
+.PHONY : prosin.c.s
 
 # Help Target
 help:
@@ -183,15 +183,15 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... aso2"
+	@echo "... edit_cache"
+	@echo "... prosin"
 	@echo "... libsem.o"
 	@echo "... libsem.i"
 	@echo "... libsem.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... prosin.o"
+	@echo "... prosin.i"
+	@echo "... prosin.s"
 .PHONY : help
 
 

@@ -5,15 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/wait.h>
 #include "libsem.h"
 
 int n_inicial; //número de procesos a crear sin modificar por la función recursiva
-extern Semaforo* semaforos;
+// se puede acceder directamente a la variable semaforos porque es externa
 
 int crea_procesos_encadenados(int n, int N)
 {

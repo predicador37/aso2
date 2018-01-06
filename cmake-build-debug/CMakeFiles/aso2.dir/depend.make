@@ -4,6 +4,6 @@
 CMakeFiles/aso2.dir/libsem.c.o: ../libsem.c
 CMakeFiles/aso2.dir/libsem.c.o: ../libsem.h
 
-CMakeFiles/aso2.dir/main.c.o: ../libsem.h
-CMakeFiles/aso2.dir/main.c.o: ../main.c
+CMakeFiles/aso2.dir/prosin.c.o: ../libsem.h
+CMakeFiles/aso2.dir/prosin.c.o: ../prosin.c
 

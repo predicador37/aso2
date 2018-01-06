@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /home/predicador/ClionProjects/aso2
 CMAKE_BINARY_DIR = /home/predicador/ClionProjects/aso2/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/aso2.dir
+# Target rules for target CMakeFiles/prosin.dir
 
 # All Build rule for target.
-CMakeFiles/aso2.dir/all:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/depend
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target aso2"
-.PHONY : CMakeFiles/aso2.dir/all
+CMakeFiles/prosin.dir/all:
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/depend
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target prosin"
+.PHONY : CMakeFiles/prosin.dir/all
 
 # Include target in all.
-all: CMakeFiles/aso2.dir/all
+all: CMakeFiles/prosin.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/aso2.dir/rule: cmake_check_build_system
+CMakeFiles/prosin.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/aso2.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/prosin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/aso2.dir/rule
+.PHONY : CMakeFiles/prosin.dir/rule
 
 # Convenience name for target.
-aso2: CMakeFiles/aso2.dir/rule
+prosin: CMakeFiles/prosin.dir/rule
 
-.PHONY : aso2
-
-# clean rule for target.
-CMakeFiles/aso2.dir/clean:
-	$(MAKE) -f CMakeFiles/aso2.dir/build.make CMakeFiles/aso2.dir/clean
-.PHONY : CMakeFiles/aso2.dir/clean
+.PHONY : prosin
 
 # clean rule for target.
-clean: CMakeFiles/aso2.dir/clean
+CMakeFiles/prosin.dir/clean:
+	$(MAKE) -f CMakeFiles/prosin.dir/build.make CMakeFiles/prosin.dir/clean
+.PHONY : CMakeFiles/prosin.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/prosin.dir/clean
 
 .PHONY : clean
 

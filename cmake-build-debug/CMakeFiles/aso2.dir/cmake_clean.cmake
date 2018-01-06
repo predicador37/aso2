@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/aso2.dir/libsem.c.o"
-  "CMakeFiles/aso2.dir/main.c.o"
+  "CMakeFiles/aso2.dir/prosin.c.o"
   "aso2.pdb"
   "aso2"
 )

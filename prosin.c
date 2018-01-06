@@ -47,7 +47,6 @@ int crea_procesos_encadenados(int n, int N)
     if (pid == 0) { // proceso hijo
         n--; // decrementar el contador de procesos, ya que hay uno más
         crea_procesos_encadenados(n, N); // llamar recursivamente a la propia función
-        exit(0);
     }
     else { // proceso padre...
 
@@ -59,8 +58,7 @@ int crea_procesos_encadenados(int n, int N)
             sleep(1); //esperar un segundo
             // si el proceso no es el último, activa a su hijo y queda a la espera
             if (n!= 1) {
-                s_sem(semaforos[n_inicial - n + 1].nombre); // activar semáforo
-
+                s_sem(semaforos[n_inicial - n + 1].nombre); // activar semáforo del hijo
                 w_sem(semaforos[n_inicial - n].nombre); // esperar para retomar el control de hijo
             }
             else { //n=1, último proceso
@@ -86,7 +84,6 @@ int crea_procesos_encadenados(int n, int N)
 
     }
 
-
 }
 
 /*
@@ -99,7 +96,7 @@ int main(int argc, char **argv) {
     // comprobación del número de argumentos
     if (argc != 3) {
         perror("[error] Debe introducir exactamente dos argumentos: número de procesos y de sincronizaciones.");
-        return(1);
+        exit(-1);
     }
 
     int n = atoi(argv[1]);
@@ -108,13 +105,13 @@ int main(int argc, char **argv) {
     // comprobación del argumento de número de procesos
     if (n < 2 || n > 8) {
         perror("[error] El número de procesos a crear debe estar entre 2 y 8.");
-        return(1);
+        exit(-1);
     }
 
     // comprobación del argumento de número de veces a ejecutar la secuencia de sincronización
     if (N < 2 || N > 15) {
         perror("[error] El número de veces a ejecutar la secuencia de sincronización debe estar entre 2 y 15.");
-        return(1);
+        exit(-1);
     }
     n_inicial = n;
 

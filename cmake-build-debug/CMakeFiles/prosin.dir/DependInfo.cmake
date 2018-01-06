@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/predicador/ClionProjects/aso2/libsem.c" "/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/aso2.dir/libsem.c.o"
-  "/home/predicador/ClionProjects/aso2/prosin.c" "/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/aso2.dir/prosin.c.o"
+  "/home/predicador/ClionProjects/aso2/libsem.c" "/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/prosin.dir/libsem.c.o"
+  "/home/predicador/ClionProjects/aso2/prosin.c" "/home/predicador/ClionProjects/aso2/cmake-build-debug/CMakeFiles/prosin.dir/prosin.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

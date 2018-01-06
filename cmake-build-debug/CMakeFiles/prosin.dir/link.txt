@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/prosin.dir/libsem.c.o CMakeFiles/prosin.dir/prosin.c.o  -o prosin 
